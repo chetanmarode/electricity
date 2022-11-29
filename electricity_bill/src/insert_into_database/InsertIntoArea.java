@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import database.MyConnection;
 
 public class InsertIntoArea {
-	public static boolean insertIntoArea(int id, String area_name, int city_id) throws ClassNotFoundException, SQLException {
-		Connection con = MyConnection.getConnection();
+	public static boolean insertIntoArea(Connection con,int id, String area_name, int city_id) throws ClassNotFoundException, SQLException {
 		CallableStatement cst = con.prepareCall("{call insert_into_area(?, ?, ?)}");
 		
 		cst.setInt(1, id);

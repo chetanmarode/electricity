@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import database.MyConnection;
 
 public class InsertIntoConsumer {
-	public static boolean insertIntoConsumer(int id, String name, int area_id, int consumer_type_id) throws ClassNotFoundException, SQLException {
-		Connection con = MyConnection.getConnection();
+	public static boolean insertIntoConsumer(Connection con, int id, String name, int area_id, int consumer_type_id) throws ClassNotFoundException, SQLException {
 		CallableStatement cst = con.prepareCall("{call insert_into_consumer(?, ?, ?, ?)}");
 		
 		cst.setInt(1, id);

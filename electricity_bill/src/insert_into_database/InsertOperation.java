@@ -1,10 +1,11 @@
 package insert_into_database;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class InsertOperation {
-	public static void insert() throws ClassNotFoundException, SQLException {
+	public static void insert(Connection con) throws ClassNotFoundException, SQLException {
 		Scanner sc = new Scanner(System.in);
 		int choice = -1;
 
@@ -25,7 +26,7 @@ public class InsertOperation {
 				int areaId = Integer.parseInt(sc.nextLine());
 				System.out.print("Enter Consumer Type Id : ");
 				int consumerTypeId = Integer.parseInt(sc.nextLine());
-				InsertIntoConsumer.insertIntoConsumer(id, consumerName, areaId, consumerTypeId);
+				InsertIntoConsumer.insertIntoConsumer(con, id, consumerName, areaId, consumerTypeId);
 				break;
 
 			case 2:
@@ -35,7 +36,7 @@ public class InsertOperation {
 				String type_name = sc.nextLine();
 				System.out.println("Enter the rate:");
 				double rate = Double.parseDouble(sc.nextLine());
-				InsertIntoConsumerType.insertIntoConsumerType(id, type_name, rate);
+				InsertIntoConsumerType.insertIntoConsumerType(con, id, type_name, rate);
 				break;
 				
 			case 3:
@@ -43,7 +44,7 @@ public class InsertOperation {
 				int city_id=Integer.parseInt(sc.nextLine());
 				System.out.println("Enter the city name");
 				String city_name=sc.nextLine();
-				InsertIntoCity.insertIntoCity(city_id, city_name);
+				InsertIntoCity.insertIntoCity(con, city_id, city_name);
 				break;
 				
 			case 4:
@@ -53,7 +54,7 @@ public class InsertOperation {
 				String area_name = sc.nextLine();
 	            System.out.print("Enter city_id : ");
 	            city_id = Integer.parseInt(sc.nextLine());
-				InsertIntoArea.insertIntoArea(id,area_name,city_id);
+				InsertIntoArea.insertIntoArea(con, id,area_name,city_id);
 				break;
 			case 5:
 				System.out.println("Closing the Insertion Operation...");

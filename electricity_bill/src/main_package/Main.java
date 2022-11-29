@@ -1,8 +1,10 @@
 package main_package;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import database.MyConnection;
 import insert_into_database.InsertOperation;
 import insert_into_database.InsertIntoBill;
 import insert_into_database.InsertIntoConsumer;
@@ -13,7 +15,7 @@ public class Main {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Scanner sc = new Scanner(System.in);
 		int choice = -1;
-		
+		Connection con = MyConnection.getConnection();
 		do {	
 			// Taking the choice from the user
 			System.out.println(">>>>>>>>>>>>> Welcome to Electricity Bill Calculator <<<<<<<<<<<<<");
@@ -31,7 +33,7 @@ public class Main {
 			
 			case 1: 
 				// Inserting Data into table
-				InsertOperation.insert();
+				InsertOperation.insert(con);
 				break;
 				
 			case 2:
@@ -39,13 +41,13 @@ public class Main {
 				System.out.println("Consumer Registration");
 				System.out.print("Enter Consumer Id : ");
 				int id = Integer.parseInt(sc.nextLine());
-				System.out.print("Enter Consumer Id : ");
+				System.out.print("Enter Consumer Name : ");
 				String consumerName = sc.nextLine();
 				System.out.print("Enter Area Id : ");
 				int areaId = Integer.parseInt(sc.nextLine());
 				System.out.print("Enter Consumer Type Id : ");
 				int consumerTypeId = Integer.parseInt(sc.nextLine());
-				InsertIntoConsumer.insertIntoConsumer(id, consumerName, areaId, consumerTypeId);
+				InsertIntoConsumer.insertIntoConsumer(con, id, consumerName, areaId, consumerTypeId);
 				System.out.println("Consumer Registered Successfully!!!");
 				break;
 				
@@ -69,12 +71,12 @@ public class Main {
 						System.out.println("The units are negative.. Please enter units > 0");
 						units = Integer.parseInt(sc.nextLine());
 					}
-					result = InsertIntoBill.insertIntoBill(bid, cid, year, month, units);
+					result = InsertIntoBill.insertIntoBill(con, bid, cid, year, month, units);
 				} while(!result);
 				break;
 			case 4: 
 				System.out.println("The Bills that are Present are:");
-				GenerateBill.getBills();
+				GenerateBill.getBills(con);
 				break;
 				
 			case 5:
@@ -83,14 +85,14 @@ public class Main {
 				System.out.print("Enter the month: ");
 				String month = sc.nextLine();
 				System.out.println("The Bills accourding to the year:" + year +" and month:" + month);
-				GenerateBill.getBillsByYearAndMonth(year, month);
+				GenerateBill.getBillsByYearAndMonth(con, year, month);
 				break;
 				
 			case 6:
 				System.out.print("Enter the area id: ");
 				int aid = Integer.parseInt(sc.nextLine());
 				System.out.println("The Bills accourding to the area id:" + aid);
-				GenerateBill.getBillsByAreaAndCity(aid);
+				GenerateBill.getBillsByAreaAndCity(con, aid);
 				break;
 				
 			case 0:
