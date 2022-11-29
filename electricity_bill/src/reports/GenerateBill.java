@@ -27,7 +27,7 @@ class GenerateReports{
 public class GenerateBill {
 
 	public static void getBills() throws ClassNotFoundException, SQLException {
-		Connection con = MyConnection.getConnection("electricity");
+		Connection con = MyConnection.getConnection();
 
 		Statement st = con.createStatement();
 		
@@ -45,7 +45,7 @@ public class GenerateBill {
 	
 	public static void getBillsByYearAndMonth(String year, String month) throws ClassNotFoundException, SQLException {
 
-		Connection con = MyConnection.getConnection("electricity");
+		Connection con = MyConnection.getConnection();
 
 		Statement st = con.createStatement();
 		String query = "SELECT c.consumer_name, b.* FROM bill b join consumer c ON c.id = b.consumer_id "
@@ -61,7 +61,7 @@ public class GenerateBill {
 	
 	public static void getBillsByAreaAndCity(int area_id) throws ClassNotFoundException, SQLException {
 
-		Connection con = MyConnection.getConnection("electricity");
+		Connection con = MyConnection.getConnection();
 		Statement st = con.createStatement();
 		String query = "SELECT c.consumer_name, b.* FROM bill b join consumer c ON c.id = b.consumer_id "
 				+ "JOIN area a ON a.id = c.area_id WHERE a.id = '" + area_id +"'";

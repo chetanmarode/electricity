@@ -10,10 +10,8 @@ public class CreateDatabase {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
 		try(Scanner sc = new Scanner(System.in)){
-		System.out.print("Please enter Database name you want to connect: ");
-		String dbName = sc.next();
 		
-		Connection con = MyConnection.getConnection(dbName);
+		Connection con = MyConnection.getConnection();
 		System.out.println("Database connected successfully.");
 		
 		Statement st = con.createStatement();

@@ -13,7 +13,7 @@ import database.MyConnection;
 public class InsertIntoBill {
 
 	public static boolean insertIntoBill(int id, int consumer_id, String year, String month, int units_consumed) throws ClassNotFoundException, SQLException {
-		Connection con = MyConnection.getConnection("electricity");
+		Connection con = MyConnection.getConnection();
 		
 		
 		//To get rate of consumer_type from consumer_id and calculate amount

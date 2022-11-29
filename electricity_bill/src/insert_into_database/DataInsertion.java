@@ -15,7 +15,7 @@ public class DataInsertion {
 		System.out.print("Please enter Database name you want to connect: ");
 		String dbName = sc.next();
 		
-		Connection con = MyConnection.getConnection(dbName);
+		Connection con = MyConnection.getConnection();
 		System.out.println("Database connected successfully.");
 		
 		//Domestic - 4.67
